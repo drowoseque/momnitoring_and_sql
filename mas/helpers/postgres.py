@@ -26,5 +26,6 @@ async def execute(
         query: str,
         params: Optional[Tuple[Any, ...]] = None
 ) -> List[Record]:
-    async with _pool.acquire() as connection:
+    pool = await  get_pool()
+    async with pool.acquire() as connection:
         return await connection.fetch(query, *params)

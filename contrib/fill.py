@@ -3,10 +3,10 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
-NUM_USERS = 10
-NUM_OBJECTS = 2
-MAX_OBJECT_ID = 10
-MAX_WORKERS = 2
+NUM_USERS = 1000000
+NUM_OBJECTS = 2000
+MAX_OBJECT_ID = 100000
+MAX_WORKERS = 16
 
 
 def add(user_id: int, object_id: int) -> None:

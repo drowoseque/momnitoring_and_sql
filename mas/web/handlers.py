@@ -23,7 +23,7 @@ class AddFavoriteHandler(RequestHandler):
         self.user_id = body.get('user_id')
 
     def prepare(self):
-        if not self.object_id or not self.user_id:
+        if self.object_id is None or self.user_id is None:
             self.set_status(400)
             self.finish()
 
@@ -42,7 +42,7 @@ class GetFavoriteHandler(RequestHandler):
         self.user_id = body.get('user_id')
 
     def prepare(self):
-        if not self.user_id:
+        if self.user_id is None:
             self.set_status(400)
             self.finish()
 
