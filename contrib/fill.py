@@ -3,20 +3,21 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
-NUM_USERS = 100000
-NUM_OBJECTS = 20
-MAX_OBJECT_ID = 1000000
-MAX_WORKERS = 16
+NUM_USERS = 10
+NUM_OBJECTS = 2
+MAX_OBJECT_ID = 10
+MAX_WORKERS = 2
 
 
 def add(user_id: int, object_id: int) -> None:
-    requests.post(
+    rep_code = requests.post(
         'http://localhost:8000/add/',
         json={
             'user_id': user_id,
             'object_id': object_id
         }
-    )
+    ).status_code
+    return rep_code
 
 
 def main():
@@ -29,7 +30,8 @@ def main():
             pairs += [(user, random.choice(objects))]
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as tpe:
-        tpe.map(add, pairs)
+        result = tpe.map(lambda _: add(*_), pairs)
+        print(list(result))
 
 
 if __name__ == '__main__':

@@ -1,9 +1,9 @@
 version: '3'
 services:
-#  application:
-#    build: .
-#    ports:
-#      - "8000:8000"
+  application:
+    build: .
+    ports:
+      - "8000:8000"
 
   postgres:
     image: postgres
