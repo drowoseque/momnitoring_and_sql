@@ -1,14 +1,18 @@
 version: '3'
 services:
-  application:
-    build: .
-    ports:
-      - "8000:8000"
+#  application:
+#    build: .
+#    ports:
+#      - "8000:8000"
 
   postgres:
     image: postgres
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_PASSWORD: hui
+    volumes:
+      - '/var/lib/postgresql/data:/var/lib/postgresql/data'
 
   grafana_graphite:
     image: kamon/grafana_graphite:latest
