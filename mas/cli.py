@@ -2,8 +2,8 @@ import click
 from tornado import ioloop
 from tornado.web import Application
 
-from monitoring_and_sql.settings import DEFAULT_PORT
-from monitoring_and_sql.web.urls import get_all_urls
+from mas.settings import DEFAULT_PORT
+from mas.web.urls import get_all_urls
 
 
 @click.command()

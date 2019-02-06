@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='monitoring_and_sql',
+    name='mas',
     version='1.0',
     packages=find_packages(),
     url='',
@@ -12,5 +12,7 @@ setup(
     install_requires=[
         'click==6.7',
         'tornado==5.0.2',
+        'statsd==3.3.0',
+        'asyncpg==0.18.0'
     ]
 )

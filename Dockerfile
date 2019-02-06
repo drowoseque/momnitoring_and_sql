@@ -6,5 +6,5 @@ RUN mkdir -p /app/src
 WORKDIR /app/src
 COPY . .
 RUN python3 setup.py install
-WORKDIR /app/src/momnitoring_and_sql
+WORKDIR /app/src/mas
 CMD python3 cli.py --port 8000

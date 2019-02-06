@@ -1,0 +1,21 @@
+version: '3'
+services:
+  application:
+    build: .
+    ports:
+      - "8000:8000"
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: hui
+
+  grafana_graphite:
+    image: kamon/grafana_graphite:latest
+    container_name: kamon-grafana-dashboard
+    ports:
+      - '80:80'
+      - '81:81'
+      - '8125:8125/udp'
+      - '8126:8126'
+      - '2003:2003'
