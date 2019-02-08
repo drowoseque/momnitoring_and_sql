@@ -4,10 +4,10 @@ POSTGRES_CONNECTION_CONF = {
     'user': 'mslavoshevskiy',
     'password': 'hui',
     'database': 'postgres',
-    'host': '127.0.0.1'
+    'host': '0.0.0.0'
 }
 
 STATSD_CONF = {
-    'host': '127.0.0.1',
+    'host': 'localhost',
     'prefix': 'mipt.highload'
 }

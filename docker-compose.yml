@@ -11,6 +11,8 @@ services:
       - '5432:5432'
     environment:
       POSTGRES_PASSWORD: hui
+      POSTGRES_USER: mslavoshevskiy
+      POSTGRES_DB: favorite
     volumes:
       - '/var/lib/postgresql/data:/var/lib/postgresql/data'
 
