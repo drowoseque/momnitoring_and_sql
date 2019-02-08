@@ -14,6 +14,6 @@ setup(
         'tornado==5.0.2',
         'statsd==3.3.0',
         'asyncpg==0.18.0',
-        'requests'
+        'requests',
     ]
 )

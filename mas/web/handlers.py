@@ -2,7 +2,8 @@ import json
 
 from tornado.web import RequestHandler
 
-from mas.services import favorite
+from mas.helpers.statsd import statsd_client
+from mas.repositories import favorite
 
 
 class PingHandler(RequestHandler):
@@ -28,12 +29,14 @@ class AddFavoriteHandler(RequestHandler):
             self.finish()
 
     async def post(self, *args, **kwargs):
-        await favorite.add(
-            user_id=self.user_id,
-            object_id=self.object_id
-        )
-        self.set_status(204)
-        self.finish()
+        statsd_client.incr(self.__class__.__name__ + '.post')
+        with statsd_client.timer(self.__class__.__name__ + '.post'):
+            await favorite.add(
+                user_id=self.user_id,
+                object_id=self.object_id
+            )
+            self.set_status(204)
+            self.finish()
 
 
 class GetFavoriteHandler(RequestHandler):
@@ -47,11 +50,13 @@ class GetFavoriteHandler(RequestHandler):
             self.finish()
 
     async def post(self, *args, **kwargs):
-        favorite_objects = await favorite.get(
-            user_id=self.user_id,
-        )
-        self.write({
-            'favorite_objects': favorite_objects
-        })
-        self.set_status(200)
-        self.finish()
+        statsd_client.incr(self.__class__.__name__ + '.post')
+        with statsd_client.timer(self.__class__.__name__ + '.post'):
+            favorite_objects = await favorite.get(
+                user_id=self.user_id,
+            )
+            self.write({
+                'favorite_objects': favorite_objects
+            })
+            self.set_status(200)
+            self.finish()

@@ -6,3 +6,8 @@ POSTGRES_CONNECTION_CONF = {
     'database': 'postgres',
     'host': '127.0.0.1'
 }
+
+STATSD_CONF = {
+    'host': '127.0.0.1',
+    'prefix': 'mipt.highload'
+}
