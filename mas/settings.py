@@ -4,7 +4,7 @@ POSTGRES_CONNECTION_CONF = {
     'user': 'mslavoshevskiy',
     'password': 'hui',
     'database': 'postgres',
-    'host': '0.0.0.0'
+    'host': '127.0.0.1'
 }
 
 STATSD_CONF = {
