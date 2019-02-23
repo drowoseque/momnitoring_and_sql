@@ -4,7 +4,10 @@ from mas.helpers import postgres
 
 _GET_BY_USER_ID_QUERY = 'SELECT object_id FROM favorite.authorized_users WHERE user_id = $1'
 _INSERT_QUERY = 'INSERT INTO favorite.authorized_users (user_id, object_id, time_added) VALUES ($1, $2, CURRENT_TIMESTAMP)'
-_CREATE_QUERY = '''create table favorite.authorized_users(
+_CREATE_SCHEMA_QUERY = '''
+create schema if not exists favorite
+'''
+_CREATE_TABLE_QUERY= '''create table if not exists favorite.authorized_users(
   user_id bigint,
   object_id bigint,
   time_added timestamp,
@@ -31,4 +34,5 @@ async def add(*, user_id: int, object_id: int) -> None:
 
 
 async def create() -> None:
-    await postgres.execute(query=_CREATE_QUERY)
+    await postgres.execute(query=_CREATE_SCHEMA_QUERY, fetch=False)
+    await postgres.execute(query=_CREATE_TABLE_QUERY, fetch=False)

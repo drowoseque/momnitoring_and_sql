@@ -26,9 +26,13 @@ async def get_pool() -> Pool:
 async def execute(
         *,
         query: str,
-        params: Optional[Tuple[Any, ...]] = None
+        params: Optional[Tuple[Any, ...]] = None,
+        fetch=True
 ) -> List[Record]:
     with statsd_client.timer('postgres.execution_time'):
         pool = await  get_pool()
         async with pool.acquire() as connection:
-            return await connection.fetch(query, *params)
+            if fetch:
+                return await connection.fetch(query, *params)
+            else:
+                await connection.execute(query)

@@ -5,14 +5,14 @@ services:
 #    ports:
 #      - "8000:8000"
 
-#  postgres:
-#    image: postgres
-#    ports:
-#      - '5432:5432'
-#    environment:
-#      POSTGRES_PASSWORD: hui
-#      POSTGRES_USER: mslavoshevskiy
-#      POSTGRES_DB: favorite
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: hui
+      POSTGRES_USER: mslavoshevskiy
+      POSTGRES_DB: favorite
 
   grafana:
     image: grafana/grafana:latest
