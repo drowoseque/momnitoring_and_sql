@@ -62,11 +62,3 @@ class GetFavoriteHandler(RequestHandler):
             })
             self.set_status(200)
             self.finish()
-
-
-class CreateTableHandler(RequestHandler):
-
-    async def post(self, *args, **kwargs):
-        statsd_client.incr(self.__class__.__name__ + '.post')
-        with statsd_client.timer(self.__class__.__name__ + '.post'):
-            await favorite.create()

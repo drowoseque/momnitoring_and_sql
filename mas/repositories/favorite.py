@@ -21,13 +21,10 @@ async def get(*, user_id: int) -> List[int]:
 
 
 async def add(*, user_id: int, object_id: int) -> None:
-    try:
-        await postgres.execute(
-            query=_INSERT_QUERY,
-            params=(user_id, object_id)
-        )
-    except UniqueViolationError:
-        pass
+    await postgres.execute(
+        query=_INSERT_QUERY,
+        params=(user_id, object_id)
+    )
 
 
 async def create() -> None:
