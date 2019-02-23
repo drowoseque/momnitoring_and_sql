@@ -15,5 +15,6 @@ setup(
         'statsd==3.3.0',
         'asyncpg==0.18.0',
         'requests',
+        'psycopg2'
     ]
 )
