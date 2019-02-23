@@ -8,6 +8,6 @@ POSTGRES_CONNECTION_CONF = {
 }
 
 STATSD_CONF = {
-    'host': 'localhost',
+    'host': '127.0.0.1',
     'prefix': 'mipt.highload'
 }

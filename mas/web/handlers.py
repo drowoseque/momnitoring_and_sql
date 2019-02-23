@@ -11,7 +11,9 @@ class PingHandler(RequestHandler):
         'status': 'ok'
     }
 
+    @statsd_client.timer('ping-handler.execution-time')
     def get(self):
+        statsd_client.incr(self.__class__.__name__ + '.request')
         self.write(self._response)
         self.set_status(200)
         self.finish()
